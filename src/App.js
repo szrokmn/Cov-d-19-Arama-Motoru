@@ -6,13 +6,12 @@ function App() {
 const [veri, setVeri] = useState("");
 const [tarih, setTarih] = useState("");
 
-
-useEffect(() => {
-  const url = "https://raw.githubusercontent.com/ozanerturk/covid19-turkey-api/master/dataset/timeline.json";
-  axios(url)
+const url = "https://raw.githubusercontent.com/ozanerturk/covid19-turkey-api/master/dataset/timeline.json";
+useEffect(() => {  
+  axios.get(url)
   .then(res => setVeri(res.data[tarih]))
   .catch(err => console.log(err))
-}, {veri, tarih})
+}, [veri, tarih])
 
 
   return (
